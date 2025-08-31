@@ -8,11 +8,11 @@
   config = lib.mkIf config.neovim.enable {
     programs.nvf = {
       enable=true;
-      vim = {
+      settings.vim = {
         theme = {
           enable = true;
           name = "tokyonight";
-          style = "dark";
+          style = "night";
         };
         languages = {
           nix.enable = true;
