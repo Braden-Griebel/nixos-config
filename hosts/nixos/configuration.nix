@@ -92,12 +92,6 @@
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       kdePackages.kate
-      neovim 
-      ripgrep 
-      fd
-      bat 
-      alacritty 
-      fish
     #  thunderbird
     ];
   };
