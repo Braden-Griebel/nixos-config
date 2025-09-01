@@ -8,6 +8,7 @@
   home.packages = with pkgs; [
     csvlens
     silver-searcher
+    wget
   ];
   
   # Install QOL cli applications by default

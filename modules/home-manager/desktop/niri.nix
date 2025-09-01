@@ -32,8 +32,5 @@
     };
     # Setup the niri config file
     xdg.configFile."niri/config.kdl".source = ./niri_config.kdl;
-    # Fix issue with electron 
-    environment.sessionVariables.NIXOS_OZONE_WL = "1";
-
   };
 }
