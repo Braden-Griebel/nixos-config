@@ -58,9 +58,10 @@
 
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm = {
-    enable = true;
-    theme = "catppuccin-sddm";
+    enable = false;
+    theme = "catppuccin-macchiato-sky";
   };
+  services.displayManager.gdm.enable = true;
   services.desktopManager.plasma6.enable = true;
 
   # Configure keymap in X11
@@ -95,7 +96,7 @@
   users.users.bgriebel = {
     isNormalUser = true;
     description = "Braden Griebel";
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = ["networkmanager" "wheel" "seat"];
     packages = with pkgs; [
       kdePackages.kate
       #  thunderbird
@@ -115,6 +116,9 @@
 
   # Install firefox.
   programs.firefox.enable = true;
+
+  # Install niri 
+  programs.niri.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
