@@ -1,19 +1,27 @@
-# Template nix module 
-{ pkgs, lib, config, ...}: {
+# Template nix module
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: {
   imports = [
     # Can import other modules to bundle them together
+    ./waybar.nix
   ];
 
-  # With the imported modules can then use below to set default 
-  # enabled modules
-  # module1.enable = lib.mkDefault true;
-
   options = {
-    niri.enable = 
+    niri.enable =
       lib.mkEnableOption "enables niri module";
   };
 
   config = lib.mkIf config.niri.enable {
+    # Enable the waybar niri module by default
+    waybar.enable = lib.mkDefault true;
+
+    # Add niri modules to the waybar config
+    waybar.niri = true;
+
     # Install additional packages for niri
     home.packages = with pkgs; [
       niri

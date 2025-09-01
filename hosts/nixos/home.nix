@@ -1,6 +1,10 @@
-{ config, pkgs, inputs, system, ... }:
-
 {
+  config,
+  pkgs,
+  inputs,
+  system,
+  ...
+}: {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "bgriebel";

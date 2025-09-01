@@ -1,16 +1,22 @@
 # CLI Applications
-{ pkgs, lib, config, ...}: {
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: {
   imports = [
     ./git.nix
   ];
 
-  # Install desired packages 
+  # Install desired packages
   home.packages = with pkgs; [
     csvlens
+    fastfetch
     silver-searcher
     wget
   ];
-  
+
   # Install QOL cli applications by default
   programs.bat.enable = true;
   programs.eza.enable = true;

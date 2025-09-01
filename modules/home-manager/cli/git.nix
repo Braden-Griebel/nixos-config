@@ -1,6 +1,10 @@
-# Template nix module 
-{ pkgs, lib, config, ...}: {
-  
+# Template nix module
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: {
   home.packages = with pkgs; [git];
   programs.git = {
     enable = true;
