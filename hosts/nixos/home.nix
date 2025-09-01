@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, inputs, system, ... }:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -10,13 +10,10 @@
     ../../modules/home-manager/cli
     ../../modules/home-manager/terminal
     ../../modules/home-manager/shell
-    inputs.nvf.homeManagerModules.default
-    ../../modules/home-manager/editor/neovim.nix
   ];
 
   alacritty.enable = true;
   fish.enable = true;
-  neovim.enable = true;
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -30,6 +27,7 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
+    inputs.nyoomvim.packages.${system}.default
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello

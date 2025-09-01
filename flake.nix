@@ -9,13 +9,13 @@
        inputs.nixpkgs.follows = "nixpkgs";
      };
 
-     nvf = {
-       url = "github:notashelf/nvf";
+     nyoomvim = {
+       url = "github:Braden-Griebel/Nyoomvim";
        inputs.nixpkgs.follows = "nixpkgs";
      };
   };
 
-  outputs = {self, nixpkgs, nvf, ...}@inputs:
+  outputs = {self, nixpkgs, ...}@inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -24,7 +24,7 @@
   {
     nixosConfigurations = {
       nixos = lib.nixosSystem {
-        specialArgs = {inherit inputs;};
+        specialArgs = {inherit inputs; system=system;};
         modules = [
           ./hosts/nixos/configuration.nix
           inputs.home-manager.nixosModules.default
