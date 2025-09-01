@@ -57,9 +57,16 @@
   services.xserver.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm = {
+  # services.displayManager.sddm = {
+  #   enable = false;
+  #   theme = "catppuccin-sddm-corners";
+  # };
+  services.displayManager.ly = {
     enable = true;
-    theme = "catppuccin-sddm-corners";
+    settings = {
+      animation = "matrix";
+      bigclock = "en";
+    };
   };
   services.desktopManager.plasma6.enable = true;
 
@@ -116,7 +123,7 @@
   # Install firefox.
   programs.firefox.enable = true;
 
-  # Install niri 
+  # Install niri
   programs.niri.enable = true;
 
   # Allow unfree packages
@@ -127,7 +134,7 @@
   environment.systemPackages = with pkgs; [
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     #  wget
-    catppuccin-sddm-corners
+    # catppuccin-sddm-corners
   ];
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";

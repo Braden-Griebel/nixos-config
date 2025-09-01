@@ -26,6 +26,7 @@
     home.packages = with pkgs; [
       swaybg
     ];
+
     # Enable programs used by niri
     programs = {
       fuzzel.enable = true;
