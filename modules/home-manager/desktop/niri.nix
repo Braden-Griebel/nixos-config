@@ -24,7 +24,6 @@
 
     # Install additional packages for niri
     home.packages = with pkgs; [
-      niri
       swaybg
     ];
     # Enable programs used by niri
@@ -38,6 +37,7 @@
       swayidle.enable = true;
       polkit-gnome.enable = true;
     };
+
     # Setup the niri config file
     xdg.configFile."niri/config.kdl".source = ./niri_config.kdl;
   };

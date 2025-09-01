@@ -58,10 +58,9 @@
 
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm = {
-    enable = false;
-    theme = "catppuccin-macchiato-sky";
+    enable = true;
+    theme = "catppuccin-sddm-corners";
   };
-  services.displayManager.gdm.enable = true;
   services.desktopManager.plasma6.enable = true;
 
   # Configure keymap in X11
@@ -128,7 +127,7 @@
   environment.systemPackages = with pkgs; [
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     #  wget
-    catppuccin-sddm
+    catppuccin-sddm-corners
   ];
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
