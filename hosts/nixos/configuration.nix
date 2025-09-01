@@ -7,12 +7,19 @@
   inputs,
   system,
   ...
-}: {
+}: let 
+    desktopSettings = config.desktopSettings;
+  in
+{
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     inputs.home-manager.nixosModules.default
+    ../../desktopSettings.nix
   ];
+
+  # Desktop settings
+  desktopSettings.niri.enable = false;
 
   # Enable Flakes
   nix.settings.experimental-features = ["nix-command" "flakes"];
@@ -114,6 +121,7 @@
     extraSpecialArgs = {
       inherit inputs;
       system = system;
+      desktopSettings = desktopSettings;
     };
     users = {
       "bgriebel" = import ./home.nix;
@@ -123,8 +131,8 @@
   # Install firefox.
   programs.firefox.enable = true;
 
-  # Install niri
-  programs.niri.enable = true;
+  # Install niri if desired
+  programs.niri.enable = desktopSettings.niri.enable;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;

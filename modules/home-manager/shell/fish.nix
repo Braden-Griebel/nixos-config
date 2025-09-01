@@ -150,8 +150,8 @@
         ls = "eza";
         lt = "eza -T";
         la = "eza -la";
-	nxbuild = "sudo nixos-rebuild build --flake ~/.dotfiles";
-	nxswitch = "sudo nixos-rebuild switch --flake ~/.dotfiles";
+        nxbuild = "sudo nixos-rebuild build --flake ~/.dotfiles";
+        nxswitch = "sudo nixos-rebuild switch --flake ~/.dotfiles";
         vv = "source ./.venv/bin/activate.fish";
         zb = "zig build";
         zt = "zig build test --summary all";
