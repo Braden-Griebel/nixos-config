@@ -7,7 +7,6 @@
   };
 
   config = lib.mkIf config.fish.enable {
-    home.packages = with pkgs; [fish];
     programs.fish = {
       enable = true;
       functions = {

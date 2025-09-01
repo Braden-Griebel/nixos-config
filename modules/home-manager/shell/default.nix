@@ -8,5 +8,4 @@
   # With the imported modules can then use below to set default 
   # enabled modules
   fish.enable = lib.mkDefault true;
-
 }
