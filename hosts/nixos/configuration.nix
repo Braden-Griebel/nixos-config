@@ -7,10 +7,9 @@
   inputs,
   system,
   ...
-}: let 
-    desktopSettings = config.desktopSettings;
-  in
-{
+}: let
+  desktopSettings = config.desktopSettings;
+in {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -19,9 +18,12 @@
   ];
 
   # Desktop settings
-  desktopSettings.niri.enable = false;
+  desktopSettings.niri.enable = true;
+  desktopSettings.hyprland.enable = true;
+  desktopSettings.kde.enable = true;
+  desktopSettings.gnome.enable = true;
 
-  # Enable Flakes
+  # Enable Flakes and nix commands
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
   # Bootloader.
@@ -40,6 +42,9 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+
+  # Enable bluetooth
+  hardware.bluetooth.enable = true;
 
   # Set your time zone.
   time.timeZone = "America/Los_Angeles";
@@ -61,7 +66,7 @@
 
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
-  services.xserver.enable = true;
+  services.xserver.enable = false;
 
   # Enable the KDE Plasma Desktop Environment.
   # services.displayManager.sddm = {
@@ -75,7 +80,10 @@
       bigclock = "en";
     };
   };
-  services.desktopManager.plasma6.enable = true;
+
+  # Enable/disable kde and gnome desktops
+  services.desktopManager.plasma6.enable = desktopSettings.kde.enable;
+  services.desktopManager.gnome.enable = desktopSettings.gnome.enable;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -139,11 +147,15 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    #  wget
-    # catppuccin-sddm-corners
-  ];
+  environment.systemPackages = with pkgs;
+    [
+    ]
+    ++ lib.optionals
+    (desktopSettings.niri.enable)
+    [
+      networkmanagerapplet
+      blueman
+    ];
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
