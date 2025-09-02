@@ -85,6 +85,9 @@ in {
   services.desktopManager.plasma6.enable = desktopSettings.kde.enable;
   services.desktopManager.gnome.enable = desktopSettings.gnome.enable;
 
+  # Enable/disable the hyprland package
+  programs.hyprland.enable = desktopSettings.hyprland.enable;
+
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
@@ -151,10 +154,11 @@ in {
     [
     ]
     ++ lib.optionals
-    (desktopSettings.niri.enable)
+    (desktopSettings.niri.enable || desktopSettings.hyprland.enable)
     [
       networkmanagerapplet
       blueman
+      brightnessctl
     ];
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";

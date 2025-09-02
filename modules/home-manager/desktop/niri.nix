@@ -1,4 +1,4 @@
-# Template nix module
+# Niri nix module
 {
   pkgs,
   lib,
@@ -12,7 +12,7 @@
 
   options = {
     niri.enable =
-      lib.mkEnableOption "enables niri module";
+      lib.mkEnableOption "niri home-manager module";
   };
 
   config = lib.mkIf config.niri.enable {

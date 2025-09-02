@@ -21,6 +21,11 @@
       default = false;
       description = "Enable niri modules in waybar";
     };
+    waybar.hyprland = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = "Enable hyprland modules in waybar";
+    };
   };
 
   config = lib.mkIf config.waybar.enable {
@@ -34,8 +39,11 @@
           modules-left =
             ["custom/launcher"]
             ++ (lib.optionals (config.waybar.niri) ["niri/workspaces"])
+            ++ (lib.optionals (config.waybar.hyprland) ["hyprland/workspaces"])
             ++ ["custom/media"];
-          modules-center = lib.optionals config.waybar.niri ["niri/window"];
+          modules-center =
+            (lib.optionals config.waybar.niri ["niri/window"])
+            ++ (lib.optionals config.waybar.hyprland ["hyprland/window"]);
           modules-right = [
             "keyboard-state"
             "idle_inhibitor"
