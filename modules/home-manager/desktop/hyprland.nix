@@ -371,7 +371,7 @@
         ];
       };
     };
-    xdg.configFile."hypr/random_wallpaper.sh".source = ''
+    xdg.configFile."hypr/random_wallpaper.sh".text = ''
       #!/usr/bin/env bash
 
       WALLPAPER_DIR="$HOME/Pictures/desktop-wallpapers/"
