@@ -26,7 +26,7 @@
       wofi.enable = true;
     };
 
-    home.packages = with pkgs; [xfce.thunar];
+    home.packages = with pkgs; [xfce.thunar mako];
 
     wayland.windowManager.hyprland = {
       enable = true;
@@ -72,11 +72,12 @@
         # Autostart necessary processes (like notifications daemons, status bars, etc.)
         # Or execute your favorite apps at launch like this:
 
-        # "exec-once" = [
-        #   "$terminal"
-        #   "nm-applet &"
-        #   "waybar & hyprpaper & firefox"
-        # ];
+        "exec-once" = [
+          "$terminal"
+          "nm-applet &"
+          "waybar & hyprpaper &"
+          "~/.config/hypr/random_wallpaper.sh"
+        ];
 
         #############################
         ### ENVIRONMENT VARIABLES ###
@@ -220,8 +221,8 @@
 
         # https://wiki.hypr.land/Configuring/Variables/#misc
         misc = {
-          force_default_wallpaper = -1; # Set to 0 or 1 to disable the anime mascot wallpapers
-          disable_hyprland_logo = false; # If true disables the random hyprland logo / anime girl background. :(
+          force_default_wallpaper = 1; # Set to 0 or 1 to disable the anime mascot wallpapers
+          disable_hyprland_logo = true; # If true disables the random hyprland logo / anime girl background. :(
         };
 
         #############
@@ -266,20 +267,20 @@
 
         bind = [
           # Example binds, see https://wiki.hypr.land/Configuring/Binds/ for more
-          "$mainMod, Q, exec, $terminal"
-          "$mainMod, C, killactive,"
-          "$mainMod, M, exit,"
-          "$mainMod, E, exec, $fileManager"
+          "$mainMod, ENTER, exec, $terminal"
+          "$mainMod, Q, killactive,"
+          "$mainMod, E, exit,"
+          "$mainMod, F, exec, $fileManager"
           "$mainMod, V, togglefloating,"
-          "$mainMod, R, exec, $menu"
+          "$mainMod, D, exec, $menu"
           "$mainMod, P, pseudo," # dwindle
-          "$mainMod, J, togglesplit," # dwindle
+          "$mainMod, W, togglesplit," # dwindle
 
-          # Move focus with mainMod + arrow keys
-          "$mainMod, left, movefocus, l"
-          "$mainMod, right, movefocus, r"
-          "$mainMod, up, movefocus, u"
-          "$mainMod, down, movefocus, d"
+          # Move focus with mainMod + vim controls
+          "$mainMod, H, movefocus, l"
+          "$mainMod, L, movefocus, r"
+          "$mainMod, K, movefocus, u"
+          "$mainMod, J, movefocus, d"
 
           # Switch workspaces with mainMod + [0-9]
           "$mainMod, 1, workspace, 1"
@@ -357,5 +358,29 @@
         ];
       };
     };
+    services.hyprpaper = {
+      enable = true;
+      settings = {
+        ipc = "on";
+        splash = false;
+        preload = [
+          "~/Picture/desktop-wallpapers/nasa-vltMzn0jqsA-unsplash.jpg"
+        ];
+        wallpaper = [
+          ",~/Picture/desktop-wallpapers/nasa-vltMzn0jqsA-unsplash.jpg"
+        ];
+      };
+    };
+    xdg.configFile."hypr/random_wallpaper.sh".source = ''
+      #!/usr/bin/env bash
+
+      WALLPAPER_DIR="$HOME/Pictures/desktop-wallpapers/"
+
+      # Get a random wallpaper that is not the current one
+      WALLPAPER=$(find "$WALLPAPER_DIR" -type f | shuf -n 1)
+
+      # Apply the selected wallpaper
+      hyprctl hyprpaper reload ,"$WALLPAPER"
+    '';
   };
 }
