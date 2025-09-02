@@ -15,6 +15,7 @@
     fastfetch
     silver-searcher
     wget
+    wl-clipboard
   ];
 
   # Install QOL cli applications by default

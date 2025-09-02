@@ -26,7 +26,7 @@
       wofi.enable = true;
     };
 
-    home.packages = with pkgs; [xfce.thunar mako];
+    home.packages = with pkgs; [xfce.thunar mako swaybg];
 
     wayland.windowManager.hyprland = {
       enable = true;
@@ -64,6 +64,7 @@
         "$terminal" = "alacritty";
         "$fileManager" = "thunar";
         "$menu" = "wofi --show drun";
+	"$webBrowser" = "firefox"
 
         #################
         ### AUTOSTART ###
@@ -73,10 +74,10 @@
         # Or execute your favorite apps at launch like this:
 
         "exec-once" = [
-          "$terminal"
           "nm-applet &"
-          "waybar & hyprpaper &"
-          "~/.config/hypr/random_wallpaper.sh"
+	  "blueman-applet &"
+          "waybar &"
+	  "swaybg -i $(find ~/Pictures/desktop-wallpapers/. -type f | shuf -n1) -m fill"
         ];
 
         #############################
@@ -86,8 +87,8 @@
         # See https://wiki.hypr.land/Configuring/Environment-variables/
 
         env = [
-          "XCURSOR_SIZE,24"
-          "HYPRCURSOR_SIZE,24"
+          "XCURSOR_SIZE,16"
+          "HYPRCURSOR_SIZE,16"
         ];
 
         ###################
@@ -135,12 +136,12 @@
 
         # https://wiki.hypr.land/Configuring/Variables/#decoration
         decoration = {
-          rounding = 10;
+          rounding = 5;
           rounding_power = 2;
 
           # Change transparency of focused and unfocused windows
           active_opacity = 1.0;
-          inactive_opacity = 1.0;
+          inactive_opacity = 0.8;
 
           shadow = {
             enabled = true;
@@ -267,10 +268,11 @@
 
         bind = [
           # Example binds, see https://wiki.hypr.land/Configuring/Binds/ for more
-          "$mainMod, ENTER, exec, $terminal"
+          "$mainMod, T, exec, $terminal"
           "$mainMod, Q, killactive,"
-          "$mainMod, E, exit,"
-          "$mainMod, F, exec, $fileManager"
+          "$mainMod, M, exit,"
+          "$mainMod, E, exec, $fileManager"
+	  "$mainMod SHIFT, B, exec, $webBrowser"
           "$mainMod, V, togglefloating,"
           "$mainMod, D, exec, $menu"
           "$mainMod, P, pseudo," # dwindle
@@ -281,6 +283,21 @@
           "$mainMod, L, movefocus, r"
           "$mainMod, K, movefocus, u"
           "$mainMod, J, movefocus, d"
+
+	  # Move window with mainMod + SHIFT + vim controls
+          "$mainMod SHIFT, H, movewindow, l"
+          "$mainMod SHIFT, L, movewindow, r"
+          "$mainMod SHIFT, K, movewindow, u"
+          "$mainMod SHIFT, J, movewindow, d"
+
+	  # Resize active window with ctrl + shift + vim controls
+	  "CTRL_SHIFT, H, resizeactive, -20 0"
+	  "CTRL_SHIFT, L, resizeactive, 20 0"
+	  "CTRL_SHIFT, K, resizeactive, 0 -20"
+	  "CTRL_SHIFT, J, resizeactive, 0 20"
+
+	  # Fullscreen the active window
+	  "SUPER, F, fullscreen"
 
           # Switch workspaces with mainMod + [0-9]
           "$mainMod, 1, workspace, 1"
@@ -358,29 +375,29 @@
         ];
       };
     };
-    services.hyprpaper = {
-      enable = true;
-      settings = {
-        ipc = "on";
-        splash = false;
-        preload = [
-          "~/Picture/desktop-wallpapers/nasa-vltMzn0jqsA-unsplash.jpg"
-        ];
-        wallpaper = [
-          ",~/Picture/desktop-wallpapers/nasa-vltMzn0jqsA-unsplash.jpg"
-        ];
-      };
-    };
-    xdg.configFile."hypr/random_wallpaper.sh".text = ''
-      #!/usr/bin/env bash
-
-      WALLPAPER_DIR="$HOME/Pictures/desktop-wallpapers/"
-
-      # Get a random wallpaper that is not the current one
-      WALLPAPER=$(find "$WALLPAPER_DIR" -type f | shuf -n 1)
-
-      # Apply the selected wallpaper
-      hyprctl hyprpaper reload ,"$WALLPAPER"
-    '';
+    # services.hyprpaper = {
+    #   enable = true;
+    #   settings = {
+    #     ipc = "on";
+    #     splash = false;
+    #     preload = [
+    #       "~/Picture/desktop-wallpapers/nasa-vltMzn0jqsA-unsplash.jpg"
+    #     ];
+    #     wallpaper = [
+    #       ",~/Picture/desktop-wallpapers/nasa-vltMzn0jqsA-unsplash.jpg"
+    #     ];
+    #   };
+    # };
+    # xdg.configFile."hypr/random_wallpaper.sh".text = ''
+    #   #!/usr/bin/env bash
+    #
+    #   WALLPAPER_DIR="$HOME/Pictures/desktop-wallpapers/"
+    #
+    #   # Get a random wallpaper that is not the current one
+    #   WALLPAPER=$(find "$WALLPAPER_DIR" -type f | shuf -n 1)
+    #
+    #   # Apply the selected wallpaper
+    #   hyprctl hyprpaper reload ,"$WALLPAPER"
+    # '';
   };
 }
