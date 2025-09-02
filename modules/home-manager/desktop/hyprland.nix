@@ -64,7 +64,7 @@
         "$terminal" = "alacritty";
         "$fileManager" = "thunar";
         "$menu" = "wofi --show drun";
-	"$webBrowser" = "firefox"
+	"$webBrowser" = "firefox";
 
         #################
         ### AUTOSTART ###
