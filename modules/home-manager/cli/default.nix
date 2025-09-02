@@ -12,6 +12,7 @@
   # Install desired packages
   home.packages = with pkgs; [
     csvlens
+    distrobox
     fastfetch
     silver-searcher
     wget

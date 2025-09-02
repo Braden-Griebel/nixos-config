@@ -16,8 +16,8 @@ in {
     inputs.home-manager.nixosModules.default
     ../../desktopSettings.nix
   ];
-  
-  
+
+  # Lix setup
   nixpkgs.overlays = [ (final: prev: {
     inherit (final.lixPackageSets.stable)
       nixpkgs-review
@@ -26,7 +26,6 @@ in {
       nix-fast-build
       colmena;
   }) ];
-
 
   nix.package = pkgs.lixPackageSets.stable.lix;
 
@@ -58,6 +57,21 @@ in {
 
   # Enable bluetooth
   hardware.bluetooth.enable = true;
+
+  # Setup Podman
+  # Enable common container config files in /etc/containers
+  virtualisation.containers.enable = true;
+  virtualisation = {
+    podman = {
+      enable = true;
+
+      # Create a `docker` alias for podman, to use it as a drop-in replacement
+      dockerCompat = true;
+
+      # Required for containers under podman-compose to be able to talk to each other.
+      defaultNetwork.settings.dns_enabled = true;
+    };
+  };
 
   # Set your time zone.
   time.timeZone = "America/Los_Angeles";
