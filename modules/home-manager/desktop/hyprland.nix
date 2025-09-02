@@ -64,7 +64,7 @@
         "$terminal" = "alacritty";
         "$fileManager" = "thunar";
         "$menu" = "wofi --show drun";
-	"$webBrowser" = "firefox";
+        "$webBrowser" = "firefox";
 
         #################
         ### AUTOSTART ###
@@ -75,9 +75,9 @@
 
         "exec-once" = [
           "nm-applet &"
-	  "blueman-applet &"
+          "blueman-applet &"
           "waybar &"
-	  "swaybg -i $(find ~/Pictures/desktop-wallpapers/. -type f | shuf -n1) -m fill"
+          "swaybg -i $(find ~/Pictures/desktop-wallpapers/. -type f | shuf -n1) -m fill"
         ];
 
         #############################
@@ -272,7 +272,7 @@
           "$mainMod, Q, killactive,"
           "$mainMod, M, exit,"
           "$mainMod, E, exec, $fileManager"
-	  "$mainMod SHIFT, B, exec, $webBrowser"
+          "$mainMod SHIFT, B, exec, $webBrowser"
           "$mainMod, V, togglefloating,"
           "$mainMod, D, exec, $menu"
           "$mainMod, P, pseudo," # dwindle
@@ -284,20 +284,20 @@
           "$mainMod, K, movefocus, u"
           "$mainMod, J, movefocus, d"
 
-	  # Move window with mainMod + SHIFT + vim controls
+          # Move window with mainMod + SHIFT + vim controls
           "$mainMod SHIFT, H, movewindow, l"
           "$mainMod SHIFT, L, movewindow, r"
           "$mainMod SHIFT, K, movewindow, u"
           "$mainMod SHIFT, J, movewindow, d"
 
-	  # Resize active window with ctrl + shift + vim controls
-	  "CTRL_SHIFT, H, resizeactive, -20 0"
-	  "CTRL_SHIFT, L, resizeactive, 20 0"
-	  "CTRL_SHIFT, K, resizeactive, 0 -20"
-	  "CTRL_SHIFT, J, resizeactive, 0 20"
+          # Resize active window with ctrl + shift + vim controls
+          "CTRL_SHIFT, H, resizeactive, -20 0"
+          "CTRL_SHIFT, L, resizeactive, 20 0"
+          "CTRL_SHIFT, K, resizeactive, 0 -20"
+          "CTRL_SHIFT, J, resizeactive, 0 20"
 
-	  # Fullscreen the active window
-	  "SUPER, F, fullscreen"
+          # Fullscreen the active window
+          "SUPER, F, fullscreen"
 
           # Switch workspaces with mainMod + [0-9]
           "$mainMod, 1, workspace, 1"

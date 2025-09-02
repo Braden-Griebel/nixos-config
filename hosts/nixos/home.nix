@@ -14,6 +14,7 @@
   imports = [
     ../../modules/home-manager/cli
     ../../modules/home-manager/desktop
+    ../../modules/home-manager/editors
     ../../modules/home-manager/terminal
     ../../modules/home-manager/shell
   ];

@@ -16,12 +16,25 @@ in {
     inputs.home-manager.nixosModules.default
     ../../desktopSettings.nix
   ];
+  
+  
+  nixpkgs.overlays = [ (final: prev: {
+    inherit (final.lixPackageSets.stable)
+      nixpkgs-review
+      nix-direnv
+      nix-eval-jobs
+      nix-fast-build
+      colmena;
+  }) ];
+
+
+  nix.package = pkgs.lixPackageSets.stable.lix;
 
   # Desktop settings
   desktopSettings.niri.enable = true;
   desktopSettings.hyprland.enable = true;
   desktopSettings.kde.enable = true;
-  desktopSettings.gnome.enable = true;
+  desktopSettings.gnome.enable = false;
 
   # Enable Flakes and nix commands
   nix.settings.experimental-features = ["nix-command" "flakes"];
