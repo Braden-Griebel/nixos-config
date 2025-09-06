@@ -8,11 +8,14 @@
   imports = [
     # Can import other modules to bundle them together
     ./sfwbar.nix
+    ./waybar.nix
   ];
 
   options = {
-    niri.enable =
-      lib.mkEnableOption "niri home-manager module";
+    niri = {
+      enable =
+        lib.mkEnableOption "niri home-manager module";
+    };
   };
 
   config = lib.mkIf config.niri.enable {
