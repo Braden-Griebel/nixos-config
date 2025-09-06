@@ -1,12 +1,8 @@
 # CLI Applications
-{
-  pkgs,
-  lib,
-  config,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
     ./git.nix
+    ./tmux.nix
   ];
 
   # Install desired packages
