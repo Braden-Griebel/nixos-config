@@ -264,11 +264,10 @@ layout {
 // which may be more convenient to use.
 // See the binds section below for more spawn examples.
 
-// This line starts waybar, a commonly used bar for Wayland compositors.
-spawn-at-startup "waybar" 
+spawn-at-startup "sfwbar" 
 spawn-at-startup "mako" 
-spawn-at-startup "nm-applet" 
-spawn-at-startup "blueman-applet"
+// spawn-at-startup "nm-applet" 
+// spawn-at-startup "blueman-applet"
 spawn-at-startup "swayidle" "-w" "timeout" "601" "niri msg action power-off-monitors" "timeout" "600" "swaylock -f" "before-sleep" "swaylock -f" 
 spawn-at-startup "bash" "-c" r#"swaybg -i $(find ~/Pictures/desktop-wallpapers/. -type f | shuf -n1) -m fill"#
 

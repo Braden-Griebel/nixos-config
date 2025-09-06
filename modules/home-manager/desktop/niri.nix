@@ -7,7 +7,7 @@
 }: {
   imports = [
     # Can import other modules to bundle them together
-    ./waybar.nix
+    ./sfwbar.nix
   ];
 
   options = {
@@ -17,7 +17,8 @@
 
   config = lib.mkIf config.niri.enable {
     # Enable the waybar niri module by default
-    waybar.enable = lib.mkDefault true;
+    sfwbar.enable = lib.mkDefault true;
+    sfwbar.configPreset = lib.mkDefault "t2";
 
     # Add niri modules to the waybar config
     waybar.niri = true;

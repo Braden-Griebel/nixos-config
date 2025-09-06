@@ -13,8 +13,11 @@ in {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    # Home manager module
     inputs.home-manager.nixosModules.default
+    # Settings for which desktop environments to setup
     ../../desktopSettings.nix
+    # Steam module
     ../../modules/nixos/steam.nix
   ];
 
@@ -41,7 +44,7 @@ in {
   steam.enable = true;
 
   # Desktop settings
-  desktopSettings.niri.enable = false;
+  desktopSettings.niri.enable = true;
   desktopSettings.hyprland.enable = true;
   desktopSettings.kde.enable = true;
   desktopSettings.gnome.enable = false;
@@ -132,6 +135,7 @@ in {
   xdg.portal = {
     enable = true;
     extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
       pkgs.xdg-desktop-portal-hyprland
     ];
     xdgOpenUsePortal = true;
