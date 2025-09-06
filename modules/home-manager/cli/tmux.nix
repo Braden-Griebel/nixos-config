@@ -1,7 +1,11 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   programs.tmux = {
     enable = true;
-    shell = "fish";
+    shell = lib.getExe pkgs.fish;
     mouse = true;
     escapeTime = 1;
     baseIndex = 1;
