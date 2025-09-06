@@ -10,7 +10,7 @@
       lib.mkEnableOption "VSCode module with some default extensions";
   };
 
-  config = lib.mkIf config.template.enable {
+  config = lib.mkIf config.vscode.enable {
     programs.vscode = {
       enable = true;
       profiles.default.extensions = with pkgs.vscode-extensions; [
