@@ -16,7 +16,6 @@
       remotePlay.openFirewall = true;
       dedicatedServer.openFirewall = true;
       localNetworkGameTransfers.openFirewall = true;
-      package = pkgs.steam.override {withJava = true;};
       gamescopeSession.enable = true;
     };
     programs.java.enable = true;
