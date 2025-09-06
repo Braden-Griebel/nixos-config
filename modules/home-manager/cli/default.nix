@@ -34,4 +34,13 @@
       "--cmd cd"
     ];
   };
+
+  # Add direnv
+  programs.direnv = {
+    enable = true;
+    enableFishIntegration = true;
+  };
+
+  # Enable Lorri
+  services.lorri.enable = true;
 }
