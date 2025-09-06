@@ -147,6 +147,7 @@
         cbt = "cmake -G \"Ninja\" -B build -S . -DBUILD_TESTING=ON";
         cbb = "cmake --build ./build";
         ct = "ctest --test-dir build --output-on-failure";
+        abox = "distrobox enter archbox -- fish";
         ls = "eza --group-directories-first --icons=auto";
         lt = "eza -T --group-directories-first --icons=auto";
         la = "eza -la --group-directories-first --icons=auto";
