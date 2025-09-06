@@ -147,11 +147,12 @@
         cbt = "cmake -G \"Ninja\" -B build -S . -DBUILD_TESTING=ON";
         cbb = "cmake --build ./build";
         ct = "ctest --test-dir build --output-on-failure";
-        ls = "eza";
-        lt = "eza -T";
-        la = "eza -la";
+        ls = "eza --group-directories-first --icons=auto";
+        lt = "eza -T --group-directories-first --icons=auto";
+        la = "eza -la --group-directories-first --icons=auto";
         nxbuild = "sudo nixos-rebuild build --flake ~/.dotfiles";
         nxswitch = "sudo nixos-rebuild switch --flake ~/.dotfiles";
+        nxclean = "sudo nix-collect-garbage --delete-older-than 5d";
         vv = "source ./.venv/bin/activate.fish";
         zb = "zig build";
         zt = "zig build test --summary all";
