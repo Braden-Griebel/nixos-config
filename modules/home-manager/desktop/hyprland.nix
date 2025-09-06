@@ -7,11 +7,14 @@
 }: {
   imports = [
     ./waybar.nix
+    ./sfwbar.nix
   ];
 
   options = {
-    hyprland.enable =
-      lib.mkEnableOption "hyprland home-manager module";
+    hyprland = {
+      enable =
+        lib.mkEnableOption "hyprland home-manager module";
+    };
   };
 
   config = lib.mkIf config.hyprland.enable {
@@ -74,9 +77,9 @@
         # Or execute your favorite apps at launch like this:
 
         "exec-once" = [
-          "nm-applet &"
-          "blueman-applet &"
-          "waybar &"
+          # "nm-applet &"
+          # "blueman-applet &"
+          "sfwbar &"
           "swaybg -i $(find ~/Pictures/desktop-wallpapers/. -type f | shuf -n1) -m fill"
         ];
 
