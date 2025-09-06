@@ -7,8 +7,7 @@
 }: {
   imports = [
     ./vscode.nix
+    ./intellij.nix
+    ./pycharm.nix
   ];
-
-  # With the imported modules can then use below to set default
-  # enabled modules
 }
