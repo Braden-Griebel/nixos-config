@@ -23,8 +23,8 @@
     sfwbar.enable = lib.mkDefault true;
     sfwbar.configPreset = lib.mkDefault "t2";
 
-    # Add niri modules to the waybar config
-    waybar.niri = true;
+    # # Add niri modules to the waybar config
+    # waybar.niri = true;
 
     # Install additional packages for niri
     home.packages = with pkgs; [
