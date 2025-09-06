@@ -15,6 +15,7 @@ in {
     ./hardware-configuration.nix
     inputs.home-manager.nixosModules.default
     ../../desktopSettings.nix
+    ../../modules/nixos/steam.nix
   ];
 
   # Lix setup
@@ -35,6 +36,9 @@ in {
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+
+  # Enable Steam
+  steam.enable = true;
 
   # Desktop settings
   desktopSettings.niri.enable = true;
