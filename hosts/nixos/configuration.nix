@@ -173,7 +173,7 @@ in {
   users.users.bgriebel = {
     isNormalUser = true;
     description = "Braden Griebel";
-    extraGroups = ["networkmanager" "wheel" "seat"];
+    extraGroups = ["networkmanager" "wheel" "seat" "input"];
     packages = with pkgs; [
       kdePackages.kate
       #  thunderbird
