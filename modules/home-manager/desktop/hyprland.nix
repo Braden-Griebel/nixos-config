@@ -23,7 +23,7 @@
 
     # Enable some programs
     programs = {
-      wofi.enable = true;
+      fuzzel.enable = true;
     };
 
     home.packages = with pkgs; [xfce.thunar mako swaybg];
@@ -51,7 +51,7 @@
         ################
 
         # See https://wiki.hypr.land/Configuring/Monitors/
-        monitor = ",preferred,auto,auto";
+        monitor = ",preferred,auto,1";
 
         ###################
         ### MY PROGRAMS ###
@@ -63,7 +63,7 @@
 
         "$terminal" = "alacritty";
         "$fileManager" = "thunar";
-        "$menu" = "wofi --show drun";
+        "$menu" = "fuzzel";
         "$webBrowser" = "firefox";
 
         #################

@@ -271,8 +271,6 @@ spawn-at-startup "nm-applet"
 spawn-at-startup "blueman-applet"
 spawn-at-startup "swayidle" "-w" "timeout" "601" "niri msg action power-off-monitors" "timeout" "600" "swaylock -f" "before-sleep" "swaylock -f" 
 spawn-at-startup "bash" "-c" r#"swaybg -i $(find ~/Pictures/desktop-wallpapers/. -type f | shuf -n1) -m fill"#
-// Start xsattelite
-spawn-at-startup "xwayland-satellite"
 
 
 
@@ -606,10 +604,6 @@ binds {
     // Powers off the monitors. To turn them back on, do any input like
     // moving the mouse or pressing any other key.
     Mod+Shift+P { power-off-monitors; }
-}
-
-environment {
-    DISPLAY ":0"
 }
 
 hotkey-overlay {

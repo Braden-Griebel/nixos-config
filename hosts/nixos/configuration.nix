@@ -124,7 +124,18 @@ in {
   services.desktopManager.gnome.enable = desktopSettings.gnome.enable;
 
   # Enable/disable the hyprland package
-  programs.hyprland.enable = desktopSettings.hyprland.enable;
+  programs.hyprland = {
+    enable = desktopSettings.hyprland.enable;
+    xwayland.enable = true;
+  };
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+    ];
+    xdgOpenUsePortal = true;
+  };
 
   # Configure keymap in X11
   services.xserver.xkb = {
