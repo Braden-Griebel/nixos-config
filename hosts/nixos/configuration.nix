@@ -18,16 +18,23 @@ in {
   ];
 
   # Lix setup
-  nixpkgs.overlays = [ (final: prev: {
-    inherit (final.lixPackageSets.stable)
-      nixpkgs-review
-      nix-direnv
-      nix-eval-jobs
-      nix-fast-build
-      colmena;
-  }) ];
+  nixpkgs.overlays = [
+    (final: prev: {
+      inherit
+        (final.lixPackageSets.stable)
+        nixpkgs-review
+        nix-direnv
+        nix-eval-jobs
+        nix-fast-build
+        colmena
+        ;
+    })
+  ];
 
   nix.package = pkgs.lixPackageSets.stable.lix;
+
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
 
   # Desktop settings
   desktopSettings.niri.enable = true;
@@ -171,9 +178,6 @@ in {
 
   # Install niri if desired
   programs.niri.enable = desktopSettings.niri.enable;
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget

@@ -17,6 +17,7 @@
     ../../modules/home-manager/editors
     ../../modules/home-manager/terminal
     ../../modules/home-manager/shell
+    ../../modules/home-manager/unfree.nix
   ];
 
   niri.enable = desktopSettings.niri.enable;
