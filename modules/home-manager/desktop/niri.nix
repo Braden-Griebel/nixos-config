@@ -8,7 +8,7 @@
   imports = [
     # Can import other modules to bundle them together
     ./sfwbar.nix
-    ./waybar.nix
+    # ./waybar.nix
   ];
 
   options = {

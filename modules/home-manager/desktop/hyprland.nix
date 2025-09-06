@@ -6,7 +6,7 @@
   ...
 }: {
   imports = [
-    ./waybar.nix
+    # ./waybar.nix
     ./sfwbar.nix
   ];
 
@@ -18,11 +18,11 @@
   };
 
   config = lib.mkIf config.hyprland.enable {
-    # Enable the waybar module
-    waybar.enable = lib.mkDefault true;
-
-    # Add hyprland modules to the waybar config
-    waybar.hyprland = true;
+    # # Enable the waybar module
+    # waybar.enable = lib.mkDefault true;
+    #
+    # # Add hyprland modules to the waybar config
+    # waybar.hyprland = true;
 
     # Enable some programs
     programs = {
@@ -121,7 +121,7 @@
         # https://wiki.hypr.land/Configuring/Variables/#general
         general = {
           gaps_in = 5;
-          gaps_out = 20;
+          gaps_out = 10;
 
           border_size = 2;
 
@@ -129,7 +129,7 @@
           "col.inactive_border" = "rgba(595959aa)";
 
           # Set to true enable resizing windows by clicking and dragging on borders and gaps
-          resize_on_border = false;
+          resize_on_border = true;
 
           # Please see https://wiki.hypr.land/Configuring/Tearing/ before you turn this on
           allow_tearing = false;
@@ -246,7 +246,7 @@
           sensitivity = 0; # -1.0 - 1.0, 0 means no modification.
 
           touchpad = {
-            natural_scroll = false;
+            natural_scroll = true;
           };
         };
 
