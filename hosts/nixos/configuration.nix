@@ -132,7 +132,7 @@ in {
   xdg.portal = {
     enable = true;
     extraPortals = [
-      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-hyprland
     ];
     xdgOpenUsePortal = true;
   };
@@ -205,7 +205,8 @@ in {
       networkmanagerapplet
       blueman
       brightnessctl
-    ];
+    ]
+    ++ lib.optionals desktopSettings.niri.enable [pkgs.xwayland-satellite];
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
