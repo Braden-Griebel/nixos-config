@@ -6,7 +6,6 @@
   ...
 }: {
   imports = [
-    ./zed.nix
   ];
 
   # With the imported modules can then use below to set default
