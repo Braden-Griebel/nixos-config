@@ -1,4 +1,4 @@
-# Template nix module
+# Alacritty nix module
 {
   pkgs,
   lib,
@@ -6,8 +6,15 @@
   ...
 }: {
   options = {
-    alacritty.enable =
-      lib.mkEnableOption "enables alacritty module";
+    alacritty = {
+      enable =
+        lib.mkEnableOption "Alacritty module";
+      fontFamily = lib.mkOption {
+        description = "Font Family to use for Alacritty terminal";
+        default = "FiraCode Nerd Font Mono";
+        type = lib.types.str;
+      };
+    };
   };
 
   config = lib.mkIf config.alacritty.enable {
@@ -16,19 +23,19 @@
     programs.alacritty.settings = {
       font = {
         normal = {
-          family = "FiraCode Nerd Font";
+          family = config.alacritty.fontFamily;
           style = "Regular";
         };
         bold = {
-          family = "FiraCode Nerd Font";
+          family = config.alacritty.fontFamily;
           style = "Bold";
         };
         italic = {
-          family = "FiraCode Nerd Font";
+          family = config.alacritty.fontFamily;
           style = "Italic";
         };
         bold_italic = {
-          family = "FiraCode Nerd Font";
+          family = config.alacritty.fontFamily;
           style = "Bold Italic";
         };
         size = 14;

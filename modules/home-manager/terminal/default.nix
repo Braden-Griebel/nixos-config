@@ -10,12 +10,15 @@
     ./alacritty.nix
   ];
 
-  # For all the terminals, need to install FiraCode Nerd Font
+  # Install desired fonts
   home.packages = with pkgs; [
     nerd-fonts.fira-code
+    nerd-fonts.bigblue-terminal
+    nerd-fonts.departure-mono
   ];
 
   # With the imported modules can then use below to set default
   # enabled modules
   alacritty.enable = lib.mkDefault true;
+  alacritty.fontFamily = "FiraCode Nerd Font Mono"; #"BigBlueTermPlus Nerd Font Mono";
 }
