@@ -153,6 +153,7 @@
         la = "eza -la --group-directories-first --icons=auto";
         nxbuild = "sudo nixos-rebuild build --flake ~/.dotfiles";
         nxswitch = "sudo nixos-rebuild switch --flake ~/.dotfiles";
+        nxtest = "sudo nixos-rebuild test --flake ~/.dotfiles";
         nxupgrade = "sudo nixos-rebuild switch --upgrade --flake ~/.dotfiles";
         nxclean = "sudo nix-collect-garbage --delete-older-than 5d";
         vv = "source ./.venv/bin/activate.fish";
