@@ -99,6 +99,9 @@
     # EDITOR = "emacs";
   };
 
+  # Let Home Manager Manage Fonts
+  fonts.fontconfig.enable = true;
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }

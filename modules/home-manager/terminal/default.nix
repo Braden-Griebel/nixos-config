@@ -11,14 +11,12 @@
   ];
 
   # Install desired fonts
-  home.packages = with pkgs; [
-    nerd-fonts.fira-code
-    nerd-fonts.bigblue-terminal
-    nerd-fonts.departure-mono
+  home.packages = with pkgs.nerd-fonts; [
+    fira-code
   ];
 
   # With the imported modules can then use below to set default
   # enabled modules
   alacritty.enable = lib.mkDefault true;
-  alacritty.fontFamily = "FiraCode Nerd Font Mono"; #"BigBlueTermPlus Nerd Font Mono";
+  alacritty.fontFamily = "FiraCode Nerd Font Mono";
 }
