@@ -87,6 +87,12 @@ in {
     };
   };
 
+  # Enable VirtualBox
+  virtualisation.virtualbox = {
+    host.enable = true;
+  };
+  users.extraGroups.vboxusers.members = ["bgriebel"];
+
   # Set your time zone.
   time.timeZone = "America/Los_Angeles";
 
