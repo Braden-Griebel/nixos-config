@@ -59,6 +59,9 @@ in {
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
+  # Fix for virtualbox
+  boot.kernelParams = ["kvm.enable_virt_at_load=0"];
+
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -90,9 +93,9 @@ in {
   # Enable VirtualBox
   virtualisation.virtualbox = {
     host.enable = true;
-    host.enableKvm = true;
-    host.enableExtensionPack = true;
-    host.addNetworkInterface = false;
+    # host.enableKvm = true;
+    # host.enableExtensionPack = true;
+    # host.addNetworkInterface = false;
   };
   users.extraGroups.vboxusers.members = ["bgriebel"];
 
