@@ -17,6 +17,7 @@
     bigblue-terminal
     departure-mono
     comic-shanns-mono
+    _3270
   ];
 
   # With the imported modules can then use below to set default
@@ -24,5 +25,5 @@
   alacritty.enable = lib.mkDefault true;
   alacritty.fontFamily = "FiraCode Nerd Font Mono";
   foot.enable = lib.mkDefault true;
-  foot.fontFamily = "FiraCode Nerd Font Mono";
+  foot.fontFamily = "ComicShannsMono Nerd Font Mono"; #"3270 Nerd Font Mono";
 }

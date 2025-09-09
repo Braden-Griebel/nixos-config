@@ -6,12 +6,14 @@
   ...
 }: {
   options = {
-    foot.enable =
-      lib.mkEnableOption "Foot Terminal module";
-    fontFamily = lib.mkOption {
-      description = "Font Family to use for Foot terminal";
-      default = "FiraCode Nerd Font Mono";
-      type = lib.types.str;
+    foot = {
+      enable =
+        lib.mkEnableOption "Foot Terminal module";
+      fontFamily = lib.mkOption {
+        description = "Font Family to use for Foot terminal";
+        default = "FiraCode Nerd Font Mono";
+        type = lib.types.str;
+      };
     };
   };
 
@@ -21,7 +23,7 @@
       settings = {
         main = {
           term = "xterm-256color";
-          font = "${config.fontFamily}:size=14";
+          font = "${config.foot.fontFamily}:size=12";
           dpi-aware = "yes";
           shell = lib.getExe pkgs.fish;
         };
@@ -47,7 +49,7 @@
           bright5 = "ff92d0"; # bright magenta
           bright6 = "9aedfe"; # bright cyan
           bright7 = "e6e6e6"; # bright white
-          cursor = ["282a36" "f8f8f2"];
+          cursor = ["282a36 f8f8f2"];
         };
         csd = {
           preferred = "none";
