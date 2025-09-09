@@ -90,8 +90,17 @@ in {
   # Enable VirtualBox
   virtualisation.virtualbox = {
     host.enable = true;
+    host.enableKvm = true;
+    host.enableExtensionPack = true;
+    host.addNetworkInterface = false;
   };
   users.extraGroups.vboxusers.members = ["bgriebel"];
+
+  # # Enable Virt-manager
+  # programs.virt-manager.enable = true;
+  # users.groups.libvirtd.members = ["bgriebel"];
+  # virtualisation.libvirtd.enable = true;
+  # virtualisation.spiceUSBRedirection.enable = true;
 
   # Set your time zone.
   time.timeZone = "America/Los_Angeles";

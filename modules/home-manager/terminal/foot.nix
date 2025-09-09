@@ -52,7 +52,7 @@
           cursor = ["282a36 f8f8f2"];
         };
         csd = {
-          preferred = "none";
+          preferred = "server";
           hide-when-maximized = "yes";
         };
       };
