@@ -90,8 +90,8 @@
         # See https://wiki.hypr.land/Configuring/Environment-variables/
 
         env = [
-          "XCURSOR_SIZE,16"
-          "HYPRCURSOR_SIZE,16"
+          "XCURSOR_SIZE,20"
+          "HYPRCURSOR_SIZE,20"
         ];
 
         ###################
@@ -216,6 +216,7 @@
         dwindle = {
           pseudotile = true; # Master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
           preserve_split = true; # You probably want this
+          smart_split = false;
         };
 
         # See https://wiki.hypr.land/Configuring/Master-Layout/ for more

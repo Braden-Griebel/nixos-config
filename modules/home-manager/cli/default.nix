@@ -8,6 +8,7 @@
   # Install desired packages
   home.packages = with pkgs; [
     csvlens
+    devenv
     distrobox
     fastfetch
     silver-searcher
@@ -22,6 +23,17 @@
   programs.fd.enable = true;
   programs.fzf.enable = true;
   programs.gh.enable = true;
+  programs.hyfetch = {
+    enable = true;
+    settings = {
+      preset = "bisexual";
+      backend = "fastfetch";
+      mode = "rgb";
+      color_align = {
+        mode = "horizontal";
+      };
+    };
+  };
   programs.lazygit.enable = true;
   programs.ripgrep.enable = true;
   programs.yazi.enable = true;
