@@ -29,9 +29,13 @@
       preset = "bisexual";
       backend = "fastfetch";
       mode = "rgb";
+      auto_detect_light_dark = true;
+      light_dark = "dark";
+      lightness = 0.6;
       color_align = {
         mode = "horizontal";
       };
+      pride_month_disable = false;
     };
   };
   programs.lazygit.enable = true;
