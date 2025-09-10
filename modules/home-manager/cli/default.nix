@@ -10,7 +10,6 @@
     csvlens
     distrobox
     fastfetch
-    mamba-cpp
     silver-searcher
     uv
     wget
