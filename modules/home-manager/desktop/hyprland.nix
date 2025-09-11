@@ -18,18 +18,206 @@
   };
 
   config = lib.mkIf config.hyprland.enable {
-    # # Enable the waybar module
-    # waybar.enable = lib.mkDefault true;
-    #
-    # # Add hyprland modules to the waybar config
-    # waybar.hyprland = true;
-
     # Enable some programs
     programs = {
       fuzzel.enable = true;
     };
 
-    home.packages = with pkgs; [xfce.thunar mako swaybg];
+    home.packages = with pkgs; [
+      xfce.thunar
+      mako
+    ];
+
+    # Wallpaper control
+    services.hyprpaper = {
+      enable = true;
+      settings = {
+        ipc = "on";
+        splash = false;
+      };
+    };
+
+    # Screen Locking
+    programs.hyprlock = {
+      enable = true;
+      extraConfig = ''
+        # sample hyprlock.conf
+        # for more configuration options, refer https://wiki.hyprland.org/Hypr-Ecosystem/hyprlock
+        #
+        # rendered text in all widgets supports pango markup (e.g. <b> or <i> tags)
+        # ref. https://wiki.hyprland.org/Hypr-Ecosystem/hyprlock/#general-remarks
+        #
+        # shortcuts to clear password buffer: ESC, Ctrl+U, Ctrl+Backspace
+        #
+        # you can get started by copying this config to ~/.config/hypr/hyprlock.conf
+        #
+
+        $font = Monospace
+
+        general {
+            hide_cursor = false
+        }
+
+        # uncomment to enable fingerprint authentication
+        # auth {
+        #     fingerprint {
+        #         enabled = true
+        #         ready_message = Scan fingerprint to unlock
+        #         present_message = Scanning...
+        #         retry_delay = 250 # in milliseconds
+        #     }
+        # }
+
+        animations {
+            enabled = true
+            bezier = linear, 1, 1, 0, 0
+            animation = fadeIn, 1, 5, linear
+            animation = fadeOut, 1, 5, linear
+            animation = inputFieldDots, 1, 2, linear
+        }
+
+        background {
+            monitor =
+            path = screenshot
+            blur_passes = 3
+        }
+
+        input-field {
+            monitor =
+            size = 20%, 5%
+            outline_thickness = 3
+            inner_color = rgba(0, 0, 0, 0.0) # no fill
+
+            outer_color = rgba(33ccffee) rgba(00ff99ee) 45deg
+            check_color = rgba(00ff99ee) rgba(ff6633ee) 120deg
+            fail_color = rgba(ff6633ee) rgba(ff0066ee) 40deg
+
+            font_color = rgb(143, 143, 143)
+            fade_on_empty = false
+            rounding = 15
+
+            font_family = $font
+            placeholder_text = Input password...
+            fail_text = $PAMFAIL
+
+            # uncomment to use a letter instead of a dot to indicate the typed password
+            # dots_text_format = *
+            # dots_size = 0.4
+            dots_spacing = 0.3
+
+            # uncomment to use an input indicator that does not show the password length (similar to swaylock's input indicator)
+            # hide_input = true
+
+            position = 0, -20
+            halign = center
+            valign = center
+        }
+
+        # TIME
+        label {
+            monitor =
+            text = $TIME # ref. https://wiki.hyprland.org/Hypr-Ecosystem/hyprlock/#variable-substitution
+            font_size = 90
+            font_family = $font
+
+            position = -30, 0
+            halign = right
+            valign = top
+        }
+
+        # DATE
+        label {
+            monitor =
+            text = cmd[update:60000] date +"%A, %d %B %Y" # update every 60 seconds
+            font_size = 25
+            font_family = $font
+
+            position = -30, -150
+            halign = right
+            valign = top
+        }
+
+        label {
+            monitor =
+            text = $LAYOUT[en,ru]
+            font_size = 24
+            onclick = hyprctl switchxkblayout all next
+
+            position = 250, -20
+            halign = center
+            valign = center
+        }
+      '';
+    };
+
+    # Idle Daemon
+    services.hypridle = {
+      enable = true;
+      settings = {
+        general = {
+          lock_cmd = "pidof hyprlock || hyprlock ";
+          before_sleep_cmd = "loginctl lock-session";
+          after_sleep_cmd = "hyprctl dispatch dpms on";
+        };
+        listener = [
+          # Dim screen
+          {
+            timeout = 150;
+            on-timeout = "brightnessctl -s set 10";
+            on-resume = "brightnessctl -r";
+          }
+          # Turnoff keyboard backlight
+          {
+            timeout = 150;
+            on-timeout = "brightnessctl -sd rgb:kbd_backlight set 0";
+            on-resume = "brightnessctl -rd rgb:kbd_backlight";
+          }
+          # Screenlock
+          {
+            timeout = 300;
+            on-timeout = "loginctl lock-session";
+          }
+          # Screen Off
+          {
+            timeout = 330;
+            on-timeout = "hyprctl dispatch dpms off";
+            on-resume = "hyprctl dispatch dpms on && brightnessctl -r";
+          }
+          # Suspend
+          {
+            timeout = 1800;
+            on-timeout = "systemctl suspend";
+          }
+        ];
+      };
+    };
+
+    # Create script for changing the wallpaper
+    xdg.configFile."hypr/wallpaper_switch.sh" = {
+      executable = true;
+      text = ''
+        #!${lib.getExe pkgs.bash}
+
+        # Set the directory where wallpapers are stored
+        WALLPAPER_DIR="$HOME/Pictures/desktop-wallpapers/"
+
+        sleep 5
+
+        # Infinite loop, setting a random wallpaper every 10 min
+        while true
+        do
+          # Get a random wallpaper
+          WALLPAPER=$(find "$WALLPAPER_DIR" -type f | shuf -n 1)
+
+          # Apply the selected wallpaper
+          hyprctl hyprpaper reload , "$WALLPAPER"
+
+          # Sleep 10 minutes
+          sleep 600
+        done
+
+      '';
+    };
 
     wayland.windowManager.hyprland = {
       enable = true;
@@ -77,10 +265,9 @@
         # Or execute your favorite apps at launch like this:
 
         "exec-once" = [
-          # "nm-applet &"
-          # "blueman-applet &"
+          "hypridle &2>1 | tee -a ~/hypridle.log"
           "sfwbar &"
-          "swaybg -i $(find ~/Pictures/desktop-wallpapers/. -type f | shuf -n1) -m fill"
+          "~/.config/hypr/wallpaper_switch.sh &"
         ];
 
         #############################
@@ -90,8 +277,8 @@
         # See https://wiki.hypr.land/Configuring/Environment-variables/
 
         env = [
-          "XCURSOR_SIZE,20"
-          "HYPRCURSOR_SIZE,20"
+          "XCURSOR_SIZE,24"
+          "HYPRCURSOR_SIZE,24"
         ];
 
         ###################
@@ -295,13 +482,16 @@
           "$mainMod SHIFT, J, movewindow, d"
 
           # Resize active window with ctrl + shift + vim controls
-          "CTRL_SHIFT, H, resizeactive, -20 0"
-          "CTRL_SHIFT, L, resizeactive, 20 0"
-          "CTRL_SHIFT, K, resizeactive, 0 -20"
-          "CTRL_SHIFT, J, resizeactive, 0 20"
+          "$mainMod CTRL, H, resizeactive, -20 0"
+          "$mainMod CTRL, L, resizeactive, 20 0"
+          "$mainMod CTRL, K, resizeactive, 0 -20"
+          "$mainMod CTRL, J, resizeactive, 0 20"
 
           # Fullscreen the active window
           "SUPER, F, fullscreen"
+
+          # Lock Screen
+          "$mainMod ALT, L, exec, hyprlock"
 
           # Switch workspaces with mainMod + [0-9]
           "$mainMod, 1, workspace, 1"

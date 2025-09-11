@@ -149,6 +149,8 @@ in {
     enable = desktopSettings.hyprland.enable;
     xwayland.enable = true;
   };
+  # Enable hyprlock under pam
+  security.pam.services.hyprlock = {};
 
   xdg.portal = {
     enable = true;

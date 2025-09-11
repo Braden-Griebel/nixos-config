@@ -10,4 +10,10 @@
     ./niri.nix
     ./hyprland.nix
   ];
+
+  home.file = {
+    "Pictures/desktop-wallpapers" = {
+      source = ../../../wallpapers;
+    };
+  };
 }
