@@ -201,7 +201,7 @@
         # Set the directory where wallpapers are stored
         WALLPAPER_DIR="$HOME/Pictures/desktop-wallpapers/"
 
-        sleep 5
+        sleep 10
 
         # Infinite loop, setting a random wallpaper every 10 min
         while true
@@ -265,7 +265,8 @@
         # Or execute your favorite apps at launch like this:
 
         "exec-once" = [
-          "hypridle &2>1 | tee -a ~/hypridle.log"
+          "hypridle"
+          "hyprpaper"
           "sfwbar &"
           "~/.config/hypr/wallpaper_switch.sh &"
         ];
