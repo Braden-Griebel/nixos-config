@@ -6,7 +6,6 @@
   ...
 }: {
   imports = [
-    # ./waybar.nix
     ./sfwbar.nix
   ];
 
@@ -26,15 +25,60 @@
     home.packages = with pkgs; [
       xfce.thunar
       mako
+      hyprpaper
+      hypridle
     ];
 
-    # Wallpaper control
-    services.hyprpaper = {
-      enable = true;
-      settings = {
-        ipc = "on";
-        splash = false;
-      };
+    # Hyprpaper config
+    xdg.configFile."hypr/hyprpaper.conf" = {
+      text = "";
+    };
+
+    # Hypridle Config
+    xdg.configFile."hypr/hypridle.conf" = {
+      text = ''
+        general {
+            lock_cmd = pidof hyprlock || hyprlock       # avoid starting multiple hyprlock instances.
+            before_sleep_cmd = loginctl lock-session    # lock before suspend.
+            after_sleep_cmd = hyprctl dispatch dpms on  # to avoid having to press a key twice to turn on the display.
+        }
+
+        listener {
+            timeout = 300                                # 5min.
+            on-timeout = brightnessctl -s set 30%         # set monitor backlight to minimum, avoid 0 on OLED monitor.
+            on-resume = brightnessctl -r                 # monitor backlight restore.
+        }
+
+
+        # turn off keyboard backlight, comment out this section if you dont have a keyboard backlight.
+        listener {
+            timeout = 600                                          # 10min.
+            on-timeout = brightnessctl -sd rgb:kbd_backlight set 0 # turn off keyboard backlight.
+            on-resume = brightnessctl -rd rgb:kbd_backlight        # turn on keyboard backlight.
+        }
+
+        listener {
+            timeout = 600                                 # 10min
+            on-timeout = loginctl lock-session            # lock screen when timeout has passed
+        }
+
+        listener {
+            timeout = 630                                # 10.5 min.
+            on-timeout = brightnessctl -s set 10         # set monitor backlight to minimum, avoid 0 on OLED monitor.
+            on-resume = brightnessctl -r                 # monitor backlight restore.
+        }
+
+        listener {
+            timeout = 630                                                     # 10.5min
+            on-timeout = hyprctl dispatch dpms off                            # screen off when timeout has passed
+            on-resume = hyprctl dispatch dpms on && brightnessctl -r          # screen on when activity is detected after timeout has fired.
+        }
+
+        listener {
+            timeout = 1800                                # 30min
+            on-timeout = systemctl suspend                # suspend pc
+        }
+      '';
     };
 
     # Screen Locking
@@ -150,48 +194,6 @@
       '';
     };
 
-    # Idle Daemon
-    services.hypridle = {
-      enable = true;
-      settings = {
-        general = {
-          lock_cmd = "pidof hyprlock || hyprlock ";
-          before_sleep_cmd = "loginctl lock-session";
-          after_sleep_cmd = "hyprctl dispatch dpms on";
-        };
-        listener = [
-          # Dim screen
-          {
-            timeout = 150;
-            on-timeout = "brightnessctl -s set 10";
-            on-resume = "brightnessctl -r";
-          }
-          # Turnoff keyboard backlight
-          {
-            timeout = 150;
-            on-timeout = "brightnessctl -sd rgb:kbd_backlight set 0";
-            on-resume = "brightnessctl -rd rgb:kbd_backlight";
-          }
-          # Screenlock
-          {
-            timeout = 300;
-            on-timeout = "loginctl lock-session";
-          }
-          # Screen Off
-          {
-            timeout = 330;
-            on-timeout = "hyprctl dispatch dpms off";
-            on-resume = "hyprctl dispatch dpms on && brightnessctl -r";
-          }
-          # Suspend
-          {
-            timeout = 1800;
-            on-timeout = "systemctl suspend";
-          }
-        ];
-      };
-    };
-
     # Create script for changing the wallpaper
     xdg.configFile."hypr/wallpaper_switch.sh" = {
       executable = true;
@@ -201,7 +203,7 @@
         # Set the directory where wallpapers are stored
         WALLPAPER_DIR="$HOME/Pictures/desktop-wallpapers/"
 
-        sleep 10
+        sleep 1
 
         # Infinite loop, setting a random wallpaper every 10 min
         while true
@@ -265,10 +267,10 @@
         # Or execute your favorite apps at launch like this:
 
         "exec-once" = [
-          "hypridle"
           "hyprpaper"
           "sfwbar &"
           "~/.config/hypr/wallpaper_switch.sh &"
+          "hypridle"
         ];
 
         #############################
@@ -570,29 +572,5 @@
         ];
       };
     };
-    # services.hyprpaper = {
-    #   enable = true;
-    #   settings = {
-    #     ipc = "on";
-    #     splash = false;
-    #     preload = [
-    #       "~/Picture/desktop-wallpapers/nasa-vltMzn0jqsA-unsplash.jpg"
-    #     ];
-    #     wallpaper = [
-    #       ",~/Picture/desktop-wallpapers/nasa-vltMzn0jqsA-unsplash.jpg"
-    #     ];
-    #   };
-    # };
-    # xdg.configFile."hypr/random_wallpaper.sh".text = ''
-    #   #!/usr/bin/env bash
-    #
-    #   WALLPAPER_DIR="$HOME/Pictures/desktop-wallpapers/"
-    #
-    #   # Get a random wallpaper that is not the current one
-    #   WALLPAPER=$(find "$WALLPAPER_DIR" -type f | shuf -n 1)
-    #
-    #   # Apply the selected wallpaper
-    #   hyprctl hyprpaper reload ,"$WALLPAPER"
-    # '';
   };
 }
