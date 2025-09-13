@@ -21,6 +21,9 @@
     programs = {
       fuzzel.enable = true;
     };
+    # Enable the sfwbar by default
+    sfwbar.enable = lib.mkDefault true;
+    sfwbar.configPreset = lib.mkDefault "t2";
 
     home.packages = with pkgs; [
       xfce.thunar
