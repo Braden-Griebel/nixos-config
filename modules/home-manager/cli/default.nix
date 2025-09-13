@@ -12,7 +12,6 @@
     distrobox
     fastfetch
     silver-searcher
-    uv
     wget
     wl-clipboard
   ];
