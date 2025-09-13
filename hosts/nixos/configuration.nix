@@ -44,7 +44,7 @@ in {
   steam.enable = true;
 
   # Desktop settings
-  desktopSettings.niri.enable = true;
+  desktopSettings.niri.enable = false;
   desktopSettings.hyprland.enable = true;
   desktopSettings.kde.enable = true;
   desktopSettings.gnome.enable = false;
