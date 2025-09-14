@@ -157,6 +157,7 @@
         nxupgrade = "sudo nixos-rebuild switch --upgrade --flake ~/.dotfiles";
         nxclean = "sudo nix-collect-garbage --delete-older-than 5d";
         vv = "source ./.venv/bin/activate.fish";
+        weather = "curl wttr.in";
         zb = "zig build";
         zt = "zig build test --summary all";
         zd = "zig build debug";
