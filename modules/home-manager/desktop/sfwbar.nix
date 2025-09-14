@@ -25,16 +25,16 @@
 
     xdg.configFile."sfwbar/sfwbar.config".source =
       if config.sfwbar.configPreset == "t2"
-      then ./t2.config
+      then ./sfwbar_configs/t2.config
       else
         (
           if config.sfwbar.configPreset == "wbar"
-          then ./wbar.config
+          then ./sfwbar_configs/wbar.config
           else
             (
               if config.sfwbar.configPreset == "w10"
-              then ./w10.config
-              else ./t2.config
+              then ./sfwbar_configs/w10.config
+              else ./sfwbar_configs/t2.config
             )
         );
   };

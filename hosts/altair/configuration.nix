@@ -21,21 +21,21 @@ in {
     ../../modules/nixos/steam.nix
   ];
 
-  # Lix setup
-  nixpkgs.overlays = [
-    (final: prev: {
-      inherit
-        (final.lixPackageSets.stable)
-        nixpkgs-review
-        nix-direnv
-        nix-eval-jobs
-        nix-fast-build
-        colmena
-        ;
-    })
-  ];
-
-  nix.package = pkgs.lixPackageSets.stable.lix;
+  # # Lix setup
+  # nixpkgs.overlays = [
+  #   (final: prev: {
+  #     inherit
+  #       (final.lixPackageSets.stable)
+  #       nixpkgs-review
+  #       nix-direnv
+  #       nix-eval-jobs
+  #       nix-fast-build
+  #       colmena
+  #       ;
+  #   })
+  # ];
+  #
+  # nix.package = pkgs.lixPackageSets.stable.lix;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
