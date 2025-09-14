@@ -7,6 +7,7 @@
 
   # Install desired packages
   home.packages = with pkgs; [
+    btop
     csvlens
     devenv
     distrobox
