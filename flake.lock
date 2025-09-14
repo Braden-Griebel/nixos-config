@@ -195,11 +195,11 @@
         "nixvim": "nixvim"
       },
       "locked": {
-        "lastModified": 1757826245,
-        "narHash": "sha256-hcZNiTCniJvH+t52no706O/zHEPU0v3YYE4YWXt1DMg=",
+        "lastModified": 1757862990,
+        "narHash": "sha256-FmqO1DMLWxr1CI3vMdiOm+tZfAYmy50t+G9z8e4PHE4=",
         "owner": "Braden-Griebel",
         "repo": "Nyoomvim",
-        "rev": "54997ca6018298028752f4101f82bb1c41227c9e",
+        "rev": "c443ab23316f2450375e5a37c3037d0673fa6b7f",
         "type": "github"
       },
       "original": {

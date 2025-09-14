@@ -40,7 +40,7 @@ in {
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # Enable Steam
+  # Enable Steam Module
   steam.enable = true;
 
   # Desktop settings
