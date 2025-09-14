@@ -62,7 +62,7 @@ in {
   # Fix for virtualbox
   boot.kernelParams = ["kvm.enable_virt_at_load=0"];
 
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "altair"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -98,6 +98,9 @@ in {
     # host.addNetworkInterface = false;
   };
   users.extraGroups.vboxusers.members = ["bgriebel"];
+
+  # Add to trusted-users
+  nix.settings.trusted-users = ["root" "bgriebel"];
 
   # # Enable Virt-manager
   # programs.virt-manager.enable = true;

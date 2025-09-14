@@ -25,13 +25,13 @@
     lib = nixpkgs.lib;
   in {
     nixosConfigurations = {
-      nixos = lib.nixosSystem {
+      altair = lib.nixosSystem {
         specialArgs = {
           inherit inputs;
           system = system;
         };
         modules = [
-          ./hosts/nixos/configuration.nix
+          ./hosts/altair/configuration.nix
           inputs.home-manager.nixosModules.default
         ];
       };
