@@ -12,6 +12,7 @@
   home.homeDirectory = "/home/bgriebel";
 
   imports = [
+    ../../modules/home-manager/apps
     ../../modules/home-manager/cli
     ../../modules/home-manager/coding
     ../../modules/home-manager/desktop
