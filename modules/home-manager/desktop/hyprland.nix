@@ -6,7 +6,9 @@
   ...
 }: {
   imports = [
-    ./sfwbar.nix
+    # ./sfwbar.nix
+    ./waybar.nix
+    ./wofi.nix
   ];
 
   options = {
@@ -17,17 +19,15 @@
   };
 
   config = lib.mkIf config.hyprland.enable {
-    # Enable some programs
-    programs = {
-      fuzzel.enable = true;
-    };
     # Enable the sfwbar by default
-    sfwbar.enable = lib.mkDefault true;
-    sfwbar.configPreset = lib.mkDefault "t2";
+    # sfwbar.enable = lib.mkDefault true;
+    # sfwbar.configPreset = lib.mkDefault "t2";
+
+    waybar.enable = lib.mkDefault true;
 
     home.packages = with pkgs; [
       xfce.thunar
-      mako
+      swaynotificationcenter
       hyprpaper
       hypridle
     ];
@@ -259,7 +259,7 @@
 
         "$terminal" = "alacritty";
         "$fileManager" = "thunar";
-        "$menu" = "fuzzel";
+        "$menu" = "wofi --show drun";
         "$webBrowser" = "firefox";
 
         ##############
@@ -290,8 +290,10 @@
 
         "exec-once" = [
           "hyprpaper"
-          "sfwbar &"
+          # "sfwbar &"
           "~/.config/hypr/wallpaper_switch.sh &"
+          "swaync"
+          "waybar"
           "hypridle"
         ];
 

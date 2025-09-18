@@ -1,0 +1,28 @@
+{
+  "style": "~/.config/waybar/style.css",
+  "layer": "top",
+  "position": "top",
+  "height": 40,
+  "modules-left": [
+    "custom/launcher",
+    "hyprland/workspaces",
+  ],
+  "modules-center": [
+    "memory",
+    "cpu",
+    "temperature"
+  ],
+  "modules-right": [
+    "idle_inhibitor",
+    "battery",
+    "hyprland/language",
+    "backlight",
+    "pulseaudio",
+    "custom/bluetooth",
+    "network",
+    "clock",
+    "custom/notification",
+    "tray"
+  ],
+  "include": "~/.config/waybar/modules.jsonc"
+}
