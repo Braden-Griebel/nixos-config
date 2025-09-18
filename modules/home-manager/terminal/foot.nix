@@ -54,7 +54,7 @@
 
           flash = "f6c177"; # yellow (Gold)
 
-          cursor = ["191724" "e0def4"];
+          cursor = "191724 e0def4";
         };
         csd = {
           preferred = "server";
