@@ -3,6 +3,7 @@
   imports = [
     ./git.nix
     ./tmux.nix
+    ./yazi.nix
   ];
 
   # Install desired packages
@@ -40,7 +41,6 @@
   };
   programs.lazygit.enable = true;
   programs.ripgrep.enable = true;
-  programs.yazi.enable = true;
   programs.zoxide = {
     enable = true;
     options = [
