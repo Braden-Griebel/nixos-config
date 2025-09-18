@@ -339,7 +339,7 @@
 
           border_size = 2;
 
-          "col.active_border" = "$rose $pine $love 45deg"; # "rgba(33ccffee) rgba(00ff99ee) 45deg";
+          "col.active_border" = "$rose $love 45deg"; # "rgba(33ccffee) rgba(00ff99ee) 45deg";
           "col.inactive_border" = "$muted"; #"rgba(595959aa)";
 
           # Set to true enable resizing windows by clicking and dragging on borders and gaps
