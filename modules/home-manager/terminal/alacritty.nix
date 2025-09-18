@@ -43,61 +43,80 @@
       terminal = {shell = "fish";};
       colors = {
         primary = {
-          background = "#282a36";
-          foreground = "#f8f8f2";
-          bright_foreground = "#ffffff";
+          foreground = "#e0def4";
+          background = "#191724";
+          dim_foreground = "#908caa";
+          bright_foreground = "#e0def4";
         };
         cursor = {
-          text = "#282a36";
-          cursor = "#f8f8f2";
+          text = "#e0def4";
+          cursor = "#524f67";
         };
         vi_mode_cursor = {
-          text = "CellBackground";
-          cursor = "CellForeground";
+          text = "#e0def4";
+          cursor = "#524f67";
         };
-        selection = {
-          text = "CellForeground";
-          background = "#44475a";
+        search = {
+          matches = {
+            foreground = "#908caa";
+            background = "#26233a";
+          };
+          focused_match = {
+            foreground = "#191724";
+            background = "#ebbcba";
+          };
         };
-        normal = {
-          black = "#21222c";
-          red = "#ff5555";
-          green = "#50fa7b";
-          yellow = "#f1fa8c";
-          blue = "#bd93f9";
-          magenta = "#ff79c6";
-          cyan = "#8be9fd";
-          white = "#f8f8f2";
+        hints = {
+          start = {
+            foreground = "#908caa";
+            background = "#1f1d2e";
+          };
+          end = {
+            foreground = "#6e6a86";
+            background = "#1f1d2e";
+          };
         };
-        bright = {
-          black = "#6272a4";
-          red = "#ff6e6e";
-          green = "#69ff94";
-          yellow = "#ffffa5";
-          blue = "#d6acff";
-          magenta = "#ff92df";
-          cyan = "#a4ffff";
-          white = "#ffffff";
-        };
-        search.matches = {
-          foreground = "#44475a";
-          background = "#50fa7b";
-        };
-        search.focused_match = {
-          foreground = "#44475a";
-          background = "#ffb86c";
+        line_indicator = {
+          foreground = "None";
+          background = "None";
         };
         footer_bar = {
-          background = "#282a36";
-          foreground = "#f8f8f2";
+          foreground = "#e0def4";
+          background = "#1f1d2e";
         };
-        hints.start = {
-          foreground = "#282a36";
-          background = "#f1fa8c";
+        selection = {
+          text = "#e0def4";
+          background = "#403d52";
         };
-        hints.end = {
-          foreground = "#f1fa8c";
-          background = "#282a36";
+        normal = {
+          black = "#26233a";
+          red = "#eb6f92";
+          green = "#31748f";
+          yellow = "#f6c177";
+          blue = "#9ccfd8";
+          magenta = "#c4a7e7";
+          cyan = "#ebbcba";
+          white = "#e0def4";
+        };
+        bright = {
+          black = "#6e6a86";
+          red = "#eb6f92";
+          green = "#31748f";
+          yellow = "#f6c177";
+          blue = "#9ccfd8";
+          magenta = "#c4a7e7";
+          cyan = "#ebbcba";
+          white = "#e0def4";
+        };
+        dim = {
+          black = "#6e6a86";
+          red = "#eb6f92";
+          green = "#31748f";
+          yellow = "#f6c177";
+          blue = "#9ccfd8";
+          magenta = "#c4a7e7";
+          cyan = "#ebbcba";
+          white = "#e0def4";
         };
       };
     };

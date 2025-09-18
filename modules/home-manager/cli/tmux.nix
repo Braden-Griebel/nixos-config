@@ -13,7 +13,7 @@
     plugins = with pkgs.tmuxPlugins; [
       sensible
       vim-tmux-navigator
-      dracula
+      rose-pine
       yank
       tmux-which-key
     ];
