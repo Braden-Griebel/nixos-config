@@ -52,17 +52,17 @@ tooltip label {
 
 #workspaces {
   background: @base;
-  padding: 4px;
+  padding: 2px;
   margin: 6px 2px;
   border-radius: 12px;
-  border: 2px solid @surface;
+  border: 2px solid @love;
 }
 
 #workspaces button {
   padding: 6px 10px;
   margin: 0 2px;
-  background: @base;
-  color: @text;
+  background: @highlightLow;
+  color: @rose;
   border-radius: 8px;
   font-weight: bold;
   border: 1px solid @highlightLow;
@@ -76,7 +76,7 @@ tooltip label {
 
 #workspaces button.active,
 #workspaces button.focused {
-  background: @foam;
+  background: @rose;
   color: @base;
   font-weight: bold;
   opacity: 1;
@@ -89,9 +89,9 @@ tooltip label {
 }
 
 #workspaces button.urgent {
-  background: @error;
+  background: @love;
   color: @base;
-  border-color: @maroon;
+  border-color: @love;
 }
 
 /* -----------------------------------------------------------------------------
@@ -99,11 +99,12 @@ tooltip label {
 * -------------------------------------------------------------------------- */
 
 #window {
-  background: @background-secondary;
-  color: @text;
-  padding: 8px 16px;
+  background: @base;
+  color: @rose;
+  padding: 2px 4px;
+  margin: 6px 2px;
   border-radius: 12px;
-  border: 1px solid @border-color;
+  border: 2px solid @love;
   font-weight: 500;
 }
 
@@ -112,12 +113,13 @@ tooltip label {
 * -------------------------------------------------------------------------- */
 
 #clock {
-  background: @foam;
-  color: @base;
+  background: @base;
+  color: @rose;
   font-weight: bold;
   margin: 6px 2px 6px 2px;
   padding: 8px 12px;
   border-radius: 12px;
+  border: 2px solid @love;
   font-size: 15px;
 }
 
@@ -127,8 +129,8 @@ tooltip label {
 
 #memory {
   background: @base;
-  color: @pine;
-  border-left: 4px solid @pine;
+  color: @rose;
+  border: 2px solid @love;
   border-radius: 12px 0 0 12px;
   margin: 6px 0;
   padding: 8px 12px;
@@ -136,25 +138,25 @@ tooltip label {
 
 #cpu {
   background: @base;
-  color: @love;
-  border-left: 4px solid @love;
+  color: @rose;
+  border: 2px solid @love;
   margin: 6px 0px 6px 0;
   padding: 8px 12px;
 }
 
 #temperature {
   background: @base;
-  color: @iris;
-  border-left: 4px solid @iris;
-  border-radius: 0 12px 12px 0;
-  margin: 6px 2px 6px 0;
+  color: @rose;
+  border: 2px solid @love;
+  /* border-radius: 0 12px 12px 0; */
+  margin: 6px 0px 6px 0;
   padding: 8px 12px;
 }
 
 #temperature.critical {
-  background: @error;
+  background: @love;
   color: @base;
-  border-left: 4px solid @maroon;
+  border: 2px solid @love;
 }
 
 /* -----------------------------------------------------------------------------
@@ -162,29 +164,29 @@ tooltip label {
 * -------------------------------------------------------------------------- */
 
 #battery {
-  background: @background-primary;
-  color: @green;
-  border-left: 4px solid @green;
-  margin: 6px 2px;
+  background: @base;
+  color: @rose;
+  border: 2px solid @love;
+  margin: 6px 2px 6px 0;
   padding: 8px 12px;
-  border-radius: 12px;
+  border-radius: 0 12px 12px 0;
 }
 
 #battery.charging {
-  color: @yellow;
-  border-left: 4px solid @yellow;
+  color: @rose;
+  border: 2px solid @love;
 }
 
 #battery.warning {
-  background: @warning;
-  color: @base;
-  border-left: 4px solid @peach;
+  background: @base;
+  color: @gold;
+  border: 2px solid @love;
 }
 
 #battery.critical:not(.charging) {
-  background: @error;
+  background: @love;
   color: @base;
-  border-left: 4px solid @maroon;
+  border: 2px solid @love;
 }
 
 /* -----------------------------------------------------------------------------
@@ -192,26 +194,26 @@ tooltip label {
 * -------------------------------------------------------------------------- */
 
 #backlight {
-  background: @background-primary;
-  color: @yellow;
-  border-left: 4px solid @yellow;
+  background: @base;
+  color: @rose;
+  border: 2px solid @love;
   border-radius: 12px 0 0 12px;
   margin: 6px 0 6px 2px;
   padding: 8px 12px;
 }
 
 #pulseaudio {
-  background: @background-primary;
-  color: @yellow;
-  border-left: 4px solid @yellow;
+  background: @base;
+  color: @rose;
+  border: 2px solid @love;
   border-radius: 0 12px 12px 0;
   margin: 6px 2px 6px 0;
   padding: 8px 12px;
 }
 
 #pulseaudio.muted {
-  color: @subtext0;
-  border-left: 4px solid @subtext0;
+  color: @muted;
+  border: 2px solid @love;
 }
 
 /* -----------------------------------------------------------------------------
@@ -220,27 +222,27 @@ tooltip label {
 
 #network {
   background: @base;
-  color: @pine;
-  border-left: 4px solid @pine;
+  color: @rose;
+  border: 2px solid @love;
   margin: 6px 2px;
   padding: 8px 12px;
   border-radius: 12px;
 }
 
 #network.disconnected {
-  color: @error;
-  border-left: 4px solid @error;
+  color: @muted;
+  border: 2px solid @love;
 }
 
 #network.disabled {
-  color: @subtext0;
-  border-left: 4px solid @subtext0;
+  color: @muted;
+  border: 2px solid @love;
 }
 
-#custom-bluetooth {
+#bluetooth {
   background: @base;
-  color: @pine;
-  border-left: 4px solid @pine;
+  color: @rose;
+  border: 2px solid @love;
   margin: 6px 2px;
   padding: 8px 12px;
   border-radius: 12px;
@@ -251,9 +253,9 @@ tooltip label {
 * -------------------------------------------------------------------------- */
 
 #language {
-  background: @background-primary;
-  color: @mauve;
-  border-left: 4px solid @mauve;
+  background: @base;
+  color: @rose;
+  border: 2px solid @love;
   margin: 6px 0 6px 2px;
   padding: 8px 12px;
   border-radius: 12px 0 0 12px;
@@ -261,8 +263,8 @@ tooltip label {
 
 #keyboard-state {
   background: @base;
-  color: @iris;
-  border-left: 4px solid @iris;
+  color: @rose;
+  border: 2px solid @love;
   margin: 6px 2px 6px 0;
   padding: 8px 12px;
   border-radius: 0 12px 12px 0;
@@ -273,7 +275,7 @@ tooltip label {
 * -------------------------------------------------------------------------- */
 
 #custom-launcher {
-  background: @foam;
+  background: @rose;
   color: @base;
   font-size: 16px;
   font-weight: bold;
@@ -286,8 +288,8 @@ tooltip label {
 
 #custom-notification {
   background: @base;
-  color: @iris;
-  border-left: 4px solid @iris;
+  color: @rose;
+  border: 2px solid @love;
   margin: 6px 2px;
   padding: 8px 12px;
   border-radius: 12px;
@@ -311,7 +313,7 @@ tooltip label {
 }
 
 #tray>.needs-attention {
-  background-color: @error;
+  background-color: @love;
   border-radius: 6px;
   color: @base;
 }
@@ -322,16 +324,16 @@ tooltip label {
 
 #idle_inhibitor {
   background: @base;
-  color: @gold;
-  border-left: 4px solid @gold;
+  color: @rose;
+  border: 2px solid @love;
   margin: 6px 2px;
   padding: 8px 12px;
   border-radius: 12px;
 }
 
 #idle_inhibitor.activated {
-  background: @gold;
-  border-left: 4px solid @base;
+  background: @rose;
+  border: 2px solid @base;
   color: @base;
 }
 

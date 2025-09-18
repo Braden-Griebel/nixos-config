@@ -6,19 +6,19 @@
   "modules-left": [
     "custom/launcher",
     "hyprland/workspaces",
+    "hyprland/window"
   ],
   "modules-center": [
     "memory",
     "cpu",
-    "temperature"
+    "temperature",
+    "battery"
   ],
   "modules-right": [
     "idle_inhibitor",
-    "battery",
-    "hyprland/language",
     "backlight",
     "pulseaudio",
-    "custom/bluetooth",
+    "bluetooth",
     "network",
     "clock",
     "custom/notification",

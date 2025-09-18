@@ -74,6 +74,7 @@ in {
 
   # Enable bluetooth
   hardware.bluetooth.enable = true;
+  services.blueman.enable = true;
 
   # Setup Podman
   # Enable common container config files in /etc/containers
@@ -230,7 +231,6 @@ in {
     (desktopSettings.niri.enable || desktopSettings.hyprland.enable)
     [
       networkmanagerapplet
-      blueman
       brightnessctl
     ]
     ++ lib.optionals desktopSettings.niri.enable [pkgs.xwayland-satellite];
