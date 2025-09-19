@@ -14,9 +14,9 @@
     plugins = with pkgs.tmuxPlugins; [
       sensible
       vim-tmux-navigator
-      tokyo-night-tmux
       yank
       tmux-which-key
+      tokyo-night-tmux
     ];
     extraConfig = ''
       # Set true color
