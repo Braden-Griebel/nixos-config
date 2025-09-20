@@ -18,8 +18,20 @@
     ];
     extraConfig = ''
       # Set true color
-      set -g default-terminal "tmux-256color"
-      set -as terminal-features ",xterm-256color:Tc"
+      # set -g default-terminal "alacritty-256color"
+      # set -as terminal-features ",xterm-256color:Tc"
+      # set-option -ga terminal-overrides ",xterm-256color:Tc"
+
+      ## enable undercurl
+      # https://github.com/AstroNvim/AstroNvim/issues/1336#issuecomment-1317609457
+      set -g default-terminal "alacritty"
+      set -as terminal-overrides ',*:Smulx=\E[4::%p1%dm'
+      set -as terminal-overrides ',*:Setulc=\E[58::2::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'
+      ## color correction
+      # https://github.com/tmux/tmux/wiki/FAQ#how-do-i-use-rgb-colour
+      set -as terminal-features ",alacritty*:RGB"
+      set -as terminal-overrides ",alacritty*:Tc"
+      set -as terminal-overrides '*:Ss=\E[%p1%d q:Se=\E[ q' # pipe cursor in vim insert mode
 
       # Source the rose-pine theme
       run-shell "bash $HOME/.config/tmux/plugins/rose-pine-tmux.tmux"
