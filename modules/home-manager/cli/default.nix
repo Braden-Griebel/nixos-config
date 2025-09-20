@@ -1,6 +1,7 @@
 # CLI Applications
 {pkgs, ...}: {
   imports = [
+    ./btop.nix
     ./git.nix
     ./starship.nix
     ./tmux.nix
@@ -9,7 +10,6 @@
 
   # Install desired packages
   home.packages = with pkgs; [
-    btop
     csvlens
     devenv
     distrobox
