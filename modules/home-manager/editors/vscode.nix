@@ -26,7 +26,11 @@
         ocamllabs.ocaml-platform
         arrterian.nix-env-selector
         mkhl.direnv
+        mvllow.rose-pine
       ];
+      userSettings = {
+        "workbench.colorTheme" = "Rosé Pine";
+      };
     };
   };
 }
