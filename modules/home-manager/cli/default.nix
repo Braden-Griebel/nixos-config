@@ -2,6 +2,7 @@
 {pkgs, ...}: {
   imports = [
     ./git.nix
+    ./starship.nix
     ./tmux.nix
     ./yazi.nix
   ];
