@@ -40,6 +40,9 @@ in {
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  # Increase the download buffer size
+  nix.settings.download-buffer-size = 50000000;
+
   # Enable Steam Module
   steam.enable = true;
 
