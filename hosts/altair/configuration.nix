@@ -96,7 +96,7 @@ in {
 
   # Enable VirtualBox
   virtualisation.virtualbox = {
-    host.enable = true;
+    host.enable = false; # TEMPORARILY DISABLED DUE TO BUILD FAILURE
     # host.enableKvm = true;
     # host.enableExtensionPack = true;
     # host.addNetworkInterface = false;
