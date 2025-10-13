@@ -9,8 +9,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nyoomvim = {
-      url = "github:Braden-Griebel/Nyoomvim";
+    panthervim = {
+      url = "github:Braden-Griebel/Panthervim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

@@ -47,7 +47,7 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
-    inputs.nyoomvim.packages.${system}.default
+    inputs.panthervim.packages.${system}.default
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
