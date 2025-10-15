@@ -60,11 +60,11 @@
         "plugins-toggleterm": "plugins-toggleterm"
       },
       "locked": {
-        "lastModified": 1760547239,
-        "narHash": "sha256-XVH5UE59VIJA2yAgZGf9mJoGll5rzZqRCrVGl3HyT5k=",
+        "lastModified": 1760551941,
+        "narHash": "sha256-xTmbz52AGFXOJ+N1sr8+Xgr3GNxBByuQXic6Z+141b4=",
         "owner": "Braden-Griebel",
         "repo": "Panthervim",
-        "rev": "d33238e073f49361e5c98ffac78f1b06ef9f8a4a",
+        "rev": "ddde9f7f44dd03c067b8b4d152a0ea02ffcab7d7",
         "type": "github"
       },
       "original": {
