@@ -8,8 +8,12 @@
   home.packages = with pkgs; [git];
   programs.git = {
     enable = true;
-    userEmail = "bgriebel@uw.edu";
-    userName = "Braden Griebel";
-    extraConfig.init.defaultBranch = "main";
+    settings = {
+      user = {
+        email = "bgriebel@uw.edu";
+        name = "Braden Griebel";
+      };
+      init.defaultBranch = "main";
+    };
   };
 }
